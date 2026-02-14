@@ -1,6 +1,6 @@
 cask "claude-runner" do
   version "0.1.0"
-  sha256 "43e47b9d46e11a30880a5a1fad6acb5e7e483b72990ed6c13d569c315138de4d"
+  sha256 "1a508afcbe2484a8860cd60c1addbc07cc2b60437a4d4a2df0e93c4af2e36d36"
 
   url "https://github.com/jyami-kim/claude-runner/releases/download/v#{version}/claude-runner-#{version}.zip"
   name "claude-runner"
