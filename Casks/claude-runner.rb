@@ -1,6 +1,6 @@
 cask "claude-runner" do
-  version "0.1.0"
-  sha256 "1a508afcbe2484a8860cd60c1addbc07cc2b60437a4d4a2df0e93c4af2e36d36"
+  version "0.1.1"
+  sha256 "5b6618f0084291ba77e51cd6609998aa3c35019390c2aa81f5f785d2b3b02d78"
 
   url "https://github.com/jyami-kim/claude-runner/releases/download/v#{version}/claude-runner-#{version}.zip"
   name "claude-runner"
@@ -8,6 +8,7 @@ cask "claude-runner" do
   homepage "https://github.com/jyami-kim/claude-runner"
 
   depends_on macos: ">= :ventura"
+  depends_on formula: "jq"
 
   app "claude-runner.app"
 
@@ -15,8 +16,7 @@ cask "claude-runner" do
             script: {
               executable: "/usr/bin/python3",
               args:       ["-c", <<~PYTHON],
-import json, os, sys, shutil
-# Remove hooks from ~/.claude/settings.json
+import json, os, shutil
 p = os.path.expanduser('~/.claude/settings.json')
 if os.path.exists(p):
     try:
@@ -31,7 +31,6 @@ if os.path.exists(p):
         else: d['hooks'] = h
         json.dump(d, open(p,'w'), indent=2, sort_keys=True)
     except: pass
-# Remove Application Support data
 shutil.rmtree(os.path.expanduser('~/Library/Application Support/claude-runner'), ignore_errors=True)
 PYTHON
             }
